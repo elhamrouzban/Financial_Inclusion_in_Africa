@@ -4,15 +4,6 @@ This is your second project. As a team, you will take a real dataset from raw da
 
 This template repository is your starting point. It ships a virtual environment, an example notebook that trains a simple model, and example Python scripts that train and predict from the terminal. Treat it as scaffolding for your own project.
 
-## Learning Objectives
-
-By the end of this project, you should be able to:
-
-- Work on a data science project as a team, sharing the work across the data science lifecycle.
-- Frame a business problem as a machine learning task and choose a performance metric that fits the value you want to create.
-- Build a baseline model, then iterate with error analysis and at least three algorithms (including cross validation and hyperparameter tuning).
-- Communicate your findings and recommendations to a non-technical audience in a short presentation.
-
 ## Timeline and Milestones
 
 The project runs over four days. Track your progress on a GitHub Kanban board. The board setup is described in [02_kanban_board.md](02_kanban_board.md).
