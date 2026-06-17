@@ -136,4 +136,6 @@ dmypy.json
 # vscode Stuff
 .vscode
 
-# Data folder stays tracked: the CSVs are teaching material.
+# nbdime Stuff
+.gitattributes
+
