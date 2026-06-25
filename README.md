@@ -1,188 +1,152 @@
-[![Shipping files](https://github.com/neuefische/ds-ml-project-template/actions/workflows/workflow-02.yml/badge.svg?branch=main&event=workflow_dispatch)](https://github.com/neuefische/ds-ml-project-template/actions/workflows/workflow-02.yml)
+# Machine Learning Project Template
 
-# Template Repo for ML Project
+A starting point for your team machine learning project. The repository ships an example notebook that trains a simple model with minimal cleaning and feature selection. Use it as scaffolding, then build your own project on top of it.
 
-This template repo will give you a good starting point for your second project. Besides the files used for creating a virtual environment, you will find a simple example of how to build a simple model in a python script. This is maybe the simplest way to do it. We train a simple model in the jupyter notebook, where we select only some features and do minimal cleaning. The output is then stored in simple python scripts.
+The example uses the [coffee quality dataset](https://github.com/jldbc/coffee-quality-database).
 
-The data used for this is: [coffee quality dataset](https://github.com/jldbc/coffee-quality-database).
+## Learning Objectives
+
+By the end of this repository, you should be able to:
+
+- Work on a data science project as a team, sharing the work across the data science lifecycle.
+- Frame a business problem as a machine learning task and choose a performance metric that fits the value you want to create.
+- Build a baseline model, then iterate with error analysis and at least three algorithms (including cross validation and hyperparameter tuning).
+- Communicate your findings and recommendations to a non-technical audience in a short presentation.
+
+## Learning Path
+
+Your project follows the data science lifecycle:
+
+```mermaid
+flowchart LR
+    A[Data] --> B[EDA]
+    B --> C[Baseline model]
+    C --> D[Error analysis and iteration]
+    D --> E[Stakeholder presentation]
+```
+
+Start with the assignment, set up your board, then use the example notebook as a reference:
+
+| File / Folder | Description |
+|---|---|
+| [**Assignment**](01_assignment.md) | The project brief: timeline, milestones, project options, deliverables, and things to think about. |
+| [**Kanban Board**](02_kanban_board.md) | Step-by-step setup of a GitHub project board to plan and track your work. |
+| [**EDA and Modeling**](03_eda-and-modeling.ipynb) | Worked example of selecting features, doing minimal cleaning, and training a simple model. |
+
+### Additional Folders and Files
+
+| File / Folder | Description |
+|---|---|
+| [**Data**](data/) | Where your datasets go. |
+| [**Models**](models/) | Where trained models are saved. |
+| [**Assets**](assets/) | Screenshots used in the Kanban board guide. |
+| [**pyproject.toml**](pyproject.toml) | Project configuration and dependencies. |
+| [**uv.lock**](uv.lock) | Dependency lock file. |
+
+## Setup
+
+> [!NOTE]
+> Throughout these steps, text in angle brackets like `<repo-name>` is a **placeholder**. Replace it, including the `< >` brackets, with your own value. For example, `cd <repo-name>` becomes `cd my-ml-project`.
+
+### 1. Create the Repository from the Template
+
+Click **Use this template** on GitHub.
+
+When creating the repository:
+
+- Set yourself as the **Owner**
+- Choose a repository name
+- Disable **Include all branches**
+- Click **Create repository**
+
+> [!IMPORTANT]
+> If you are working in pairs or groups, only **one person** should complete this step.
 
 ---
 
-## Set up a Kanban board on github
+### 2. Add Collaborators (Pairs/Groups Only)
 
-Go to ML-Project Template.
+If working with teammates:
 
-1. Click on "Use this Template" (Blue button)
-![alt text](./images/step_1a_new.png)
+1. Open the repository on GitHub
+2. Go to **Settings → Collaborators**
+3. Add your teammates as collaborators
+4. Share the repository link with your team
 
-1. Create new repository with relevant name, the owner should be your own account. 
-![alt text](./images/step_2_new.png)
-
-1. In your newly create repo, navigate to "Projects", and then click on "Link a project" (blue button). Normally you don't have created a project yet, so you can click the arrow navigation to create project on your profile. This project can be added at the end to your repository.
-![alt text](./images/add_project_new.png)
-
-
-4.  You will be guided to your profiles projects and it will be shown a create project window. Choose "board" view and **not** "table" view.
- ![alt text](./images/choose_board.png)
-5. Now change the name of your board, to match that of your chosen ML project. Then click "Create project" blue button. Great you create Kanban Board
-![alt text](./images/create_project_new.png)
-
-6. Next, assign rights to all your team members by clicking on the 3 dots on the top right of the board, and then go to "Settings".
-![alt text](./images/kanban_settings.png)
-
-
-7. Next, click on "Manage Access". Add your team mates by Searching for their github handle in the search window.Change their Role from ‘Write’ to ‘Admin’. Click on the blue button “Invite” to add them. Repeat for all team members.
-![alt text](./images/team_access_new.png
-)
-
-8. Next,go back to the kanban board and at the bottom  add action items with the relevant name e.g. “load data”, "get statistics", etc.
-![alt text](./images/load_data_item.png
-)
-
-
-9. Convert added item to issue by clicking on the 3 dots on the particular added item.
-![alt text](./images/convert_to_issue.png
-)
-
-10. Then select the repo you created  for the issue to be added. (Select the project repo example “my-project-name”)
-![alt text](./images/select_repo.png
-)
-
-11. When in project repo, Go to issues, then go to milestones. 
-![alt text](./images/to_milestones.png
-)
-
-12. Click on ”New milestone”.
-
-13. Give the milestone a due date and description as per the example provided by the coaches. Add description of: 
-
-    A) What needs to be completed to be done with the milestone
-
-    B) The definition of done: what will your result look like when you have completed the milestone? (check the provided format)
-![alt text](./images/new_milestone.png)
-
-14. Now navigate to "issues".
-
-15. Assign issues to milestones 
-![alt text](./images/milestone_to_issue_new.png)
-
-16. Give it assignees (people who will work on the task). 
-![alt text](./images/milestone_to_someone.png)
-
-### Optional: Add workflows
-
-Workflows can help you keep your kanban board automatically on track. 
-
-Select the project created in the steps above.  
-
-Click on the 3 dots to the far right of the board (...)
-
-Select workflow as the first option. 
-
-Activate the ones you feel necessary to your project
-
-Go back to your project repository (fraud detection))
-
-## Set up your Environment
-
-
-
-### **`macOS`** type the following commands : 
-
-- For installing the virtual environment you can either use the [Makefile](Makefile) and run `make setup` or install it manually with the following commands:
-
-     ```BASH
-    make setup
-    ```
-    After that active your environment by following commands:
-    ```BASH
-    source .venv/bin/activate
-    ```
-Or ....
-- Install the virtual environment and the required packages by following commands:
-
-    ```BASH
-    pyenv local 3.11.3
-    python -m venv .venv
-    source .venv/bin/activate
-    pip install --upgrade pip
-    pip install -r requirements.txt
-    ```
-    
-### **`WindowsOS`** type the following commands :
-
-- Install the virtual environment and the required packages by following commands.
-
-   For `PowerShell` CLI :
-
-    ```PowerShell
-    pyenv local 3.11.3
-    python -m venv .venv
-    .venv\Scripts\Activate.ps1
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
-    ```
-
-    For `Git-bash` CLI :
-  
-    ```BASH
-    pyenv local 3.11.3
-    python -m venv .venv
-    source .venv/Scripts/activate
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
-    ```
-
-    **`Note:`**
-    If you encounter an error when trying to run `pip install --upgrade pip`, try using the following command:
-    ```Bash
-    python.exe -m pip install --upgrade pip
-    ```
-
-
-   
-## Usage
-
-In order to train the model and store test data in the data folder and the model in models run:
-
-**`Note`**: Make sure your environment is activated.
-
-```bash
-python example_files/train.py  
-```
-
-In order to test that predict works on a test set you created run:
-
-```bash
-python example_files/predict.py models/linear_regression_model.sav data/X_test.csv data/y_test.csv
-```
-
-## Limitations
-
-Development libraries are part of the production environment, normally these would be separate as the production code should be as slim as possible.
-
+Teammates should accept the invitation before continuing.
 
 ---
 
-## Handling Merge Conflicts in Jupyter Notebooks
+### 3. Clone the Repository
 
-When working in teams, `.ipynb` files can cause messy merge conflicts because they’re JSON-based.  
-We use **nbdime** to make this easy.
+Copy the SSH URL from the **Code** button on GitHub, then run:
 
-### Setup (run once)
 ```bash
-nbdime config-git --enable
+git clone <copied-ssh-url>
 ```
 
-### When a conflict happens
+The copied SSH URL will look like `git@github.com:<your-username>/<repo-name>.git`.
+
+---
+
+### 4. Move into the Project Folder and Install Dependencies
+
+This installs all dependencies and creates a virtual environment in (`.venv/`).
+
 ```bash
-nbdime mergetool
+cd <repo-name>
+uv sync
 ```
 
-A web interface will open showing both notebook versions side by side.
-Choose what to keep, save and close tool, then:
+> [!TIP]
+> This is your own project, so you will add libraries as you go. Install a new package with `uv add <package>` (for example `uv add xgboost`). It updates `pyproject.toml` and `uv.lock` for the whole team.
+
+---
+
+### 5. Open the Notebook
+
+> [!NOTE]
+> Make sure you open VS Code from the project root so it automatically detects the environment created by `uv sync`.
+
+Launch VS Code in the project root folder:
+
+```bash
+code .
+```
+
+Then open `03_eda-and-modeling.ipynb` and select the Python environment created by `uv sync` as the kernel.
+
+## Handling Merge Conflicts in Notebooks
+
+When working in a team, `.ipynb` files can cause messy merge conflicts because they are JSON based. The `nbdime` tool makes this easier, and `uvx` runs it without adding it to your project dependencies.
+
+Enable the git integration once:
+
+```bash
+uvx nbdime config-git --enable
+```
+
+When a conflict happens, open the merge tool:
+
+```bash
+uvx nbdime mergetool
+```
+
+A web interface opens showing both notebook versions side by side. Choose what to keep, save, and close the tool, then:
+
 ```bash
 git add your_notebook.ipynb
-git commit -m "Resolved notebook conflict"
+git commit -m "Resolve notebook conflict"
 ```
-That’s it — clean merges for notebooks!
+
+> [!TIP]
+> When working with notebooks, it's a good idea to clear outputs before committing to reduce the chances of conflicts. You can do this in VS Code with the command palette: `Notebook: Clear All Outputs`.
+
+## References & Further Reading
+
+- [**scikit-learn Documentation**](https://scikit-learn.org/stable/): the library used for modelling, with user guides and examples.
+- [**Choosing the Right Estimator**](https://scikit-learn.org/stable/machine_learning_map.html): a visual map for picking a model based on your problem and data.
+- [**PEP 8 Style Guide for Python Code**](https://peps.python.org/pep-0008/): the style your notebook should follow.
+- [**Jupyter Notebooks in VS Code**](https://code.visualstudio.com/docs/datascience/jupyter-notebooks): how to run notebooks and pick a kernel in VS Code.
+- [**uv Documentation**](https://docs.astral.sh/uv/): the package manager that handles Python and dependencies for this repo.
+- [**Zindi Competitions**](https://zindi.africa/competitions): real-world challenges, several of which are listed as project options in the assignment.
