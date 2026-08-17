@@ -1,4 +1,3 @@
-# Machine Learning Project: Assignment
 
 This is your second project. As a team, you will take a real dataset from raw data to a working machine learning model and a stakeholder presentation. The aim is to practise the full data science lifecycle together: frame a problem, build a baseline, iterate with error analysis, and communicate your findings to a non-technical audience.
 
