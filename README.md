@@ -22,22 +22,22 @@ data/*
 | File / Folder | Description |
 |---|---|
 | **Git Repo** | [Git Repo](https://github.com/elhamrouzban/Financial_Inclusion_in_Africa) |
+| [**assets**](assets/) | Assets used for this project. |
 | [**data**](data/) | Where your datasets go. |
 | [**data/Train.csv**](data/Train.csv) | Train contains the target. This is the dataset that you will use to train your model. |
 | [**data/Test.csv**](data/Test.csv) | Test resembles Train.csv but without the target-related columns. This is the dataset your model will generate predictions for.|
 | [**data/VariableDefinitions.csv**](data/VariableDefinitions.csv) | Full list of variables and their explanations. |
 | [**data/SampleSubmission.csv**](data/SampleSubmission.csv) | This shows the submission format for this competition, with the 'ID' column mirroring that of Test.csv and the 'bank_account' column containing your predictions. The order of the rows does not matter, but the names of the ID must be correct. Note that the variable ID in the submission file is: uniqueid + " x " + country name. |
-| [**docs**](docs/) | Notebooks with examples |
+| [**docs**](docs/) | Miscellaneous documents |
+| [**models**](models/) | Where trained models are saved. |
 | [**notebooks**](notebooks/) | Notebooks use for the competition. |
 | [**notebooks/01_eda.ipynb**](notebooks/01_eda.ipynb) | Notebooks for Exploratory Data Analysis. |
-| [**notebooks/02_preporocessing.ipynb**](notebooks/02_preporocessing.ipynb) | Notebooks for preprocessing Data. |
+| [**notebooks/02_preprocessing.ipynb**](notebooks/02_preprocessing.ipynb) | Notebooks for preprocessing Data. |
 | [**notebooks/03_baseline_models.ipynb**](notebooks/03_baseline_models.ipynb) | Notebooks creating the baseline model. |
 | [**notebooks/04_model_experiments.ipynb**](notebooks/04_model_experiments.ipynb) | Notebooks creating the baseline model. |
 | [**notebooks/05_error_analysis.ipynb**](notebooks/05_error_analysis.ipynb) | Notebooks creating the baseline model. |
 | [**presentation**](presentation/) | Folder with presentations |
 | [**StarterNotebook.ipynb**](StarterNotebook.ipynb) | Starter notebook to help make your submission.|
-| [**Models**](models/) | Where trained models are saved. |
-| [**Assets**](assets/) | Assets used for this project. |
 | [**pyproject.toml**](pyproject.toml) | Project configuration and dependencies. |
 | [**uv.lock**](uv.lock) | Dependency lock file. |
 
