@@ -6,10 +6,6 @@ __pycache__/
 # C extensions
 *.so
 
-# Competition data (must not be committed)
-data/*
-!data/.gitkeep
-
 # Distribution / packaging
 private/
 .Python
