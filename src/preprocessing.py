@@ -21,7 +21,7 @@ CATEGORICAL_FEATURES = [
 
 
 def build_preprocessor():
-    preprocessor = ColumnTransformer(
+    return  ColumnTransformer(
         transformers=[
             (
                 "num",
@@ -36,4 +36,21 @@ def build_preprocessor():
         ]
     )
 
-    return preprocessor
+
+
+def build_scaled_preprocessor():
+    return ColumnTransformer(
+        transformers=[
+            ("num", StandardScaler(), NUMERICAL_FEATURES),
+            ("cat", OneHotEncoder(handle_unknown="ignore"), CATEGORICAL_FEATURES)
+        ]
+    )
+
+
+def build_tree_preprocessor():
+    return ColumnTransformer(
+        transformers=[
+            ("num", "passthrough", NUMERICAL_FEATURES),
+            ("cat", OneHotEncoder(handle_unknown="ignore"), CATEGORICAL_FEATURES)
+        ]
+    )
