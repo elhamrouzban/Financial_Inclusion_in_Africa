@@ -1,21 +1,65 @@
 # Financial Inclusion in Africa
 
-This is a machine learning competition centered on financial inclusion. The goal is to build a model that predicts which individuals in Kenya, Rwanda, Tanzania, and Uganda are most likely to have or use a bank account, using demographic and financial-behavior data from surveys conducted between 2016 and 2018 across roughly 33,600 people. The target is 1 if the person has a bank account, 0 if not. The model is split into a 70% training set with the target included and a 30% test set.
+This is a machine learning project predicting which individuals in Kenya, Rwanda, Tanzania, and Uganda are most likely to have or use a bank account, built for the Zindi "Financial Inclusion in Africa" competition. The goal is a working submission and a demonstration of the full data science lifecycle: EDA, preprocessing, baseline and iterative modeling, and error analysis.
 
-Model quality is scored by Mean Absolute Error (MAE) between predicted values (0 to 1) and the true labels, so submissions need exactly two columns: `unique_id` (which combines the individual's ID with their country name) and `bank_account`. 
+[Data](https://zindi.world/competitions/financial-inclusion-in-africa/data) comes from Finscope surveys conducted in 2016–2018 across 33,600 individuals in the four countries. `Train.csv` includes the target (`bank_account`); `Test.csv` mirrors it without the target. The target is binary and notably imbalanced (far more "No" than "Yes"). `VariableDefinitions.csv` documents every column.
 
+Model quality is scored by Mean Absolute Error (MAE) between predicted values (0 to 1) and the true labels for a person having a bank account or not (Yes = 1, No = 0), so submissions need exactly two columns: `unique_id` (which combines the individual's ID with their country name) and `bank_account`.
 
-The data comes in five files: `Train.csv`, `Test.csv`, `VariableDefinitions.csv` (a data dictionary explaining each column), `SampleSubmission.csv` (the exact format your submission file needs to match), and `StarterNotebook.ipynb` (Zindi's walkthrough notebook).
+<br>
 
-> Rules while working on the competition: only publicly available/open-source packages, no sharing the competition data outside the platform.
-> Competition data cannot be shared publicly or uploaded to external platforms and needs a .`gitignore` addition:
+**Project structure:**
+```
+data/ # Zindi datasets — see Setup below (gitignored, not in the repo)
+notebooks/ # 01_eda -> 02_preprocessing -> 03_baseline_models -> 04_model_experiments -> 05_error_analysis
+src/ # reusable preprocessing and data-splitting functions
+models/ # saved trained models
+presentation/ # milestone and final presentation materials
+docs/ # legacy assignment/kanban materials — not used, gitignored
+```
 
+<br>
+
+**Setup instructions:**
+
+1. Clone the repo and move into the project folder:
+```bash
+   git clone git@github.com:elhamrouzban/Financial_Inclusion_in_Africa.git
+   cd Financial_Inclusion_in_Africa
+```
+1. Install dependencies:
+```bash
+   uv sync
+```
+1. Download the competition data from the [competition's Data tab](https://zindi.africa/competitions/financial-inclusion-in-africa/data) (Zindi account required): `Train.csv`, `Test.csv`, `SampleSubmission.csv`, and `VariableDefinitions.csv`. Place all four files in `data/`.
+2. Open the project in VS Code (`code .`) and select the Python environment created by `uv sync` as the kernel before running any notebook in `/notebooks`.
+
+> Competition data cannot be shared publicly or uploaded to external platforms, so `/data` is gitignored:
 
 ```
-# Competition data (must not be committed)
+# Competition data (must not be committed — see README)
 data/*
 !data/.gitkeep
 ```
+
+## Steps to Get Started
+
+| # | Step | What it involves |
+|---|------|-------------------|
+| 1 | Read the rules and data dictionary | Review the competition page and `data/VariableDefinitions.csv`. |
+| 2 | Set up your environment | `uv sync` to install dependencies from `pyproject.toml`. |
+| 3 | Load and explore the data | `notebooks/01_eda.ipynb` |
+| 4 | Exploratory data analysis (EDA) | `notebooks/01_eda.ipynb` |
+| 5 | Preprocess the data consistently | `notebooks/02_preprocessing.ipynb`, using `src/preprocessing.py`'s `build_preprocessor()` |
+| 6 | Split out a validation set | `src/data_split.py`'s `load_and_split_data()` (stratified 80/20 split) |
+| 7 | Train a baseline model | `notebooks/03_baseline_models.ipynb` |
+| 8 | Train and compare stronger models | `notebooks/04_model_experiments.ipynb` (in progress) |
+| 9 | Tune hyperparameters | `notebooks/04_model_experiments.ipynb` (in progress) |
+| 10 | Refit on the full training data | `notebooks/04_model_experiments.ipynb` (in progress) |
+| 11 | Generate predictions on `Test.csv` | `notebooks/05_error_analysis.ipynb` (in progress), or a future `06_final_model.ipynb` |
+| 12 | Build the submission file | Match `data/SampleSubmission.csv`'s format exactly |
+| 13 | Submit and check the leaderboard | Upload on Zindi (10-submissions/day cap) |
+| 14 | Iterate | Revisit steps 8–11 based on leaderboard feedback |
 
 ## Folders and Files
 
@@ -23,47 +67,51 @@ data/*
 |---|---|
 | **Git Repo** | [Git Repo](https://github.com/elhamrouzban/Financial_Inclusion_in_Africa) |
 | [**assets**](assets/) | Assets used for this project. |
-| [**data**](data/) | Where your datasets go. |
-| [**data/Train.csv**](data/Train.csv) | Train contains the target. This is the dataset that you will use to train your model. |
-| [**data/Test.csv**](data/Test.csv) | Test resembles Train.csv but without the target-related columns. This is the dataset your model will generate predictions for.|
-| [**data/VariableDefinitions.csv**](data/VariableDefinitions.csv) | Full list of variables and their explanations. |
-| [**data/SampleSubmission.csv**](data/SampleSubmission.csv) | This shows the submission format for this competition, with the 'ID' column mirroring that of Test.csv and the 'bank_account' column containing your predictions. The order of the rows does not matter, but the names of the ID must be correct. Note that the variable ID in the submission file is: uniqueid + " x " + country name. |
-| [**docs**](docs/) | Miscellaneous documents |
+| **data** | Where the Zindi datasets go locally. Gitignored — see Setup above to download them. |
+| [**docs**](docs/) | Legacy materials. Not used by the current pipeline; gitignored. |
 | [**models**](models/) | Where trained models are saved. |
-| [**notebooks**](notebooks/) | Notebooks use for the competition. |
-| [**notebooks/01_eda.ipynb**](notebooks/01_eda.ipynb) | Notebooks for Exploratory Data Analysis. |
-| [**notebooks/02_preprocessing.ipynb**](notebooks/02_preprocessing.ipynb) | Notebooks for preprocessing Data. |
-| [**notebooks/03_baseline_models.ipynb**](notebooks/03_baseline_models.ipynb) | Notebooks creating the baseline model. |
-| [**notebooks/04_model_experiments.ipynb**](notebooks/04_model_experiments.ipynb) | Notebooks creating the baseline model. |
-| [**notebooks/05_error_analysis.ipynb**](notebooks/05_error_analysis.ipynb) | Notebooks creating the baseline model. |
-| [**presentation**](presentation/) | Folder with presentations |
-| [**StarterNotebook.ipynb**](StarterNotebook.ipynb) | Starter notebook to help make your submission.|
+| [**notebooks**](notebooks/) | Notebooks used for the competition. |
+| [**notebooks/01_eda.ipynb**](notebooks/01_eda.ipynb) | Exploratory Data Analysis |
+| [**notebooks/02_preprocessing.ipynb**](notebooks/02_preprocessing.ipynb) | Preprocessing Data |
+| [**notebooks/03_baseline_models.ipynb**](notebooks/03_baseline_models.ipynb) | Baseline Models |
+| [**notebooks/04_model_experiments.ipynb**](notebooks/04_model_experiments.ipynb) | Model Experiments (in progress) |
+| [**notebooks/05_error_analysis.ipynb**](notebooks/05_error_analysis.ipynb) | Error Analysis (in progress) |
+| [**src**](src/) | Source files |
+| [**src/data_split.py**](src/data_split.py) | Does a stratified 80/20 train/validation split, reading from `data/Train_clean.csv` (produced by `02_preprocessing.ipynb`). |
+| [**src/preprocessing.py**](src/preprocessing.py) | Builds a `ColumnTransformer` (StandardScaler on the numeric columns, `OneHotEncoder(handle_unknown="ignore")` on the categoricals). |
+| [**presentation**](presentation/) | Folder with presentation materials |
+| [**PROJECT_WORKFLOW.md**](PROJECT_WORKFLOW.md) | The team's master roadmap — ML workflow phases, target repo structure, and Git/GitHub workflow. |
+| [**StarterNotebook.ipynb**](StarterNotebook.ipynb) | Zindi's original walkthrough notebook. Kept for reference; superseded by the `/notebooks` pipeline above. |
 | [**pyproject.toml**](pyproject.toml) | Project configuration and dependencies. |
 | [**uv.lock**](uv.lock) | Dependency lock file. |
-
 
 <br>
 
 ---
 
-## Steps to Complete the Competition
+## EDA Summary
+_To be completed after `01_eda.ipynb` is finalized._
 
-The Zindi data (`Train.csv`, `Test.csv`) requires a free Zindi account to download from the [competition's Data tab](https://zindi.africa/competitions/financial-inclusion-in-africa/data). Place both files in `data/` before running the notebook.
+## Models Tested
 
+**Dummy baseline** (`DummyClassifier`, `most_frequent` strategy) — always predicts the majority class, used as the floor any real model must beat:
 
-| # | Step | What it involves |
-|---|------|-------------------|
-| 1 | Read the rules and data dictionary | Review the competition page and `VariableDefinitions.csv` so you understand what each column means and what's off-limits (no AutoML, no external data sharing, 10 submissions/day cap). |
-| 2 | Set up your environment | Confirm your project has the packages you'll actually use installed (e.g. `scikit-learn`, and `xgboost`/`lightgbm` if you plan to use them — these aren't in the current `pyproject.toml`, so they'd need to be added). |
-| 3 | Load and explore the data | Read `Train.csv` and `Test.csv`, check shape, dtypes, missing values, and the class balance of `bank_account` (it's notably imbalanced — far more "No" than "Yes"). |
-| 4 | Exploratory data analysis (EDA) | Visualize distributions and relationships between features (country, location type, education level, job type, etc.) and the target to build intuition before modeling. |
-| 5 | Preprocess the data consistently | Encode categorical features and scale numeric ones — ideally fit any encoders/scalers once (e.g. via a `ColumnTransformer`/`Pipeline`) and reuse them on both train and test to avoid mismatched columns or leakage. |
-| 6 | Split out a validation set | Hold out a portion of `Train.csv` (with stratification, given the class imbalance) so you can evaluate models before touching the real test set. |
-| 7 | Train a baseline model | Start simple (e.g. logistic regression or a majority-class dummy classifier) to establish a floor to beat. |
-| 8 | Train and compare stronger models | Try tree-based models (Random Forest, XGBoost) and compare using metrics that account for class imbalance — not just accuracy, but precision/recall/F1 on the minority class, and ultimately MAE since that's the actual scoring metric. |
-| 9 | Tune hyperparameters | Use cross-validation (e.g. `GridSearchCV`) to search for better parameters, watching for genuine improvement rather than noise. |
-| 10 | Refit on the full training data | Once you've picked a final model/parameters, retrain on all of `Train.csv` (not just the split) before predicting on the real test set. |
-| 11 | Generate predictions on `Test.csv` | Apply the exact same preprocessing pipeline used on the training data, then predict `bank_account` for every row. |
-| 12 | Build the submission file | Format it to match `SampleSubmission.csv` exactly — an `ID` column combining `unique_id` and country, plus the predicted `bank_account` value. |
-| 13 | Submit and check the leaderboard | Upload the CSV on Zindi (mind the 10-per-day cap), review your MAE score, and note what to try next. |
-| 14 | Iterate | Revisit feature engineering, try new models, or adjust preprocessing based on leaderboard feedback, then repeat steps 8–13. |
+| Metric | Value |
+|---|---|
+| Accuracy | 0.8593 |
+| Error Rate | 0.1407 |
+| Macro F1 | 0.4622 |
+| Class 1 Recall | 0.0000 |
+| Class 1 F1 | 0.0000 |
+
+_Additional models to be added as `04_model_experiments.ipynb` is filled in._
+
+## Final Results
+_Pending — no model beyond the dummy baseline has been trained on the new preprocessing pipeline yet._
+
+## Limitations
+_To be completed alongside error analysis (`05_error_analysis.ipynb`)._
+
+## Next Steps
+- Fill in `04_model_experiments.ipynb` and `05_error_analysis.ipynb`.
+- Once a final model is chosen, generate a submission and record results here.
